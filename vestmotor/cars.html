@@ -4,20 +4,20 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bruktbiler til salgs – Vest Motor AS</title>
-  <link rel="stylesheet" href="/vestmotor/assets/css/main.css"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
-      <a href="/vestmotor/"><img src="/vestmotor/assets/images/logo.webp" alt="Vest Motor AS"/></a>
+      <a href="/"><img src="/assets/images/logo.webp" alt="Vest Motor AS"/></a>
     </div>
     <button class="nav-toggle" aria-label="Meny" aria-expanded="false">☰</button>
     <nav class="nav" data-mobile="closed">
-      <a href="/vestmotor/index.html">Hjem</a>
-      <a href="/vestmotor/cars.html">Bruktbiler</a>
-      <a href="/vestmotor/services.html">Tjenester</a>
-      <a href="/vestmotor/about.html">Om Oss</a>
-      <a class="cta" href="/vestmotor/contact.html">Kontakt</a>
+      <a href="/index.html">Hjem</a>
+      <a href="/cars.html">Bruktbiler</a>
+      <a href="/services.html">Tjenester</a>
+      <a href="/about.html">Om Oss</a>
+      <a class="cta" href="/contact.html">Kontakt</a>
     </nav>
   </header>
   <main>
@@ -51,9 +51,9 @@
   <footer class="site-footer">
     <p class="legal">© <span id="year"></span> Vest Motor AS</p>
   </footer>
-  <script src="/vestmotor/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
   <script defer>
-    fetch('/vestmotor/assets/js/data/cars.json').then(r=>r.json()).then(cars=>{
+    fetch('/assets/js/data/cars.json').then(r=>r.json()).then(cars=>{
       const q = document.getElementById('q');
       const fuel = document.getElementById('fuel');
       const trans = document.getElementById('trans');
@@ -83,7 +83,7 @@
                   <span class="price">${new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(c.priceNok)}</span>
                 </div>
                 <div class="meta">${c.year} • ${c.mileageKm.toLocaleString('nb-NO')} km • ${c.transmission}</div>
-                <a href="/vestmotor/car.html?id=${encodeURIComponent(c.id)}">Se mer</a>
+                <a href="/car.html?id=${encodeURIComponent(c.id)}">Se mer</a>
               </div>
             </article>`;
         }).join('');

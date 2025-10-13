@@ -14,7 +14,7 @@
   // Load featured cars if present
   const featured = document.getElementById('featured-cars');
   if(featured){
-    fetch('/vestmotor/assets/js/data/cars.json').then(r=>r.json()).then(cars=>{
+    fetch('/assets/js/data/cars.json').then(r=>r.json()).then(cars=>{
       const top = cars.slice(0,6);
       featured.innerHTML = top.map(renderCarCard).join('');
     }).catch(()=>{ featured.innerHTML = '<p class="meta">Kunne ikke laste biler akkurat nå.</p>'; });
@@ -29,7 +29,7 @@
           <span class="price">${formatPrice(car.priceNok)}</span>
         </div>
         <div class="meta">${car.year} • ${car.mileageKm.toLocaleString('nb-NO')} km • ${car.transmission}</div>
-        <a href="/vestmotor/car.html?id=${encodeURIComponent(car.id)}">Se mer</a>
+        <a href="/car.html?id=${encodeURIComponent(car.id)}">Se mer</a>
       </div>
     </article>`;
   }
@@ -40,7 +40,7 @@
   // PWA registration
   if('serviceWorker' in navigator){
     window.addEventListener('load', ()=>{
-      navigator.serviceWorker.register('/vestmotor/sw.js').catch(()=>{});
+      navigator.serviceWorker.register('/sw.js').catch(()=>{});
     });
   }
 })();

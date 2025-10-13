@@ -1,14 +1,14 @@
 const CACHE = 'vestmotor-v1';
 const ASSETS = [
-  '/vestmotor/index.html',
-  '/vestmotor/cars.html',
-  '/vestmotor/car.html',
-  '/vestmotor/services.html',
-  '/vestmotor/about.html',
-  '/vestmotor/contact.html',
-  '/vestmotor/assets/css/main.css',
-  '/vestmotor/assets/js/main.js',
-  '/vestmotor/assets/js/data/cars.json'
+  '/index.html',
+  '/cars.html',
+  '/car.html',
+  '/services.html',
+  '/about.html',
+  '/contact.html',
+  '/assets/css/main.css',
+  '/assets/js/main.js',
+  '/assets/js/data/cars.json'
 ];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
