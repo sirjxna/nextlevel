@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Bruktbiler til salgs – Vest Motor AS</title>
+  <link rel="stylesheet" href="/vestmotor/assets/css/main.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="/vestmotor/"><img src="/vestmotor/assets/images/logo.webp" alt="Vest Motor AS"/></a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny" aria-expanded="false">☰</button>
+    <nav class="nav" data-mobile="closed">
+      <a href="/vestmotor/index.html">Hjem</a>
+      <a href="/vestmotor/cars.html">Bruktbiler</a>
+      <a href="/vestmotor/services.html">Tjenester</a>
+      <a href="/vestmotor/about.html">Om Oss</a>
+      <a class="cta" href="/vestmotor/contact.html">Kontakt</a>
+    </nav>
+  </header>
+  <main>
+    <section style="padding:16px 20px">
+      <h1>Bruktbiler til salgs</h1>
+      <div class="controls">
+        <input id="q" class="input" placeholder="Søk merke, modell..."/>
+        <select id="fuel">
+          <option value="">Drivstoff</option>
+          <option>Elektrisk</option>
+          <option>Hybrid</option>
+          <option>Bensin</option>
+          <option>Diesel</option>
+        </select>
+        <select id="trans">
+          <option value="">Girkasse</option>
+          <option>Automat</option>
+          <option>Manuell</option>
+        </select>
+        <select id="sort">
+          <option value="price-asc">Pris lav-høy</option>
+          <option value="price-desc">Pris høy-lav</option>
+          <option value="year-desc">Nyeste</option>
+          <option value="year-asc">Eldste</option>
+        </select>
+      </div>
+      <div class="cards" id="cars"></div>
+      <p class="meta" id="count"></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p class="legal">© <span id="year"></span> Vest Motor AS</p>
+  </footer>
+  <script src="/vestmotor/assets/js/main.js" defer></script>
+  <script defer>
+    fetch('/vestmotor/assets/js/data/cars.json').then(r=>r.json()).then(cars=>{
+      const q = document.getElementById('q');
+      const fuel = document.getElementById('fuel');
+      const trans = document.getElementById('trans');
+      const sort = document.getElementById('sort');
+      const grid = document.getElementById('cars');
+      const count = document.getElementById('count');
+
+      const render = ()=>{
+        let list = cars.slice();
+        const query = q.value.trim().toLowerCase();
+        if(query){ list = list.filter(c => (`${c.make} ${c.model}`).toLowerCase().includes(query)); }
+        if(fuel.value){ list = list.filter(c => c.fuel === fuel.value); }
+        if(trans.value){ list = list.filter(c => c.transmission === trans.value); }
+        switch(sort.value){
+          case 'price-asc': list.sort((a,b)=>a.priceNok-b.priceNok); break;
+          case 'price-desc': list.sort((a,b)=>b.priceNok-a.priceNok); break;
+          case 'year-desc': list.sort((a,b)=>b.year-a.year); break;
+          case 'year-asc': list.sort((a,b)=>a.year-b.year); break;
+        }
+        grid.innerHTML = list.map(c=>{
+          return `
+            <article class="card">
+              <img src="${c.image}" alt="${c.make} ${c.model}"/>
+              <div class="content">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <strong>${c.make} ${c.model}</strong>
+                  <span class="price">${new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(c.priceNok)}</span>
+                </div>
+                <div class="meta">${c.year} • ${c.mileageKm.toLocaleString('nb-NO')} km • ${c.transmission}</div>
+                <a href="/vestmotor/car.html?id=${encodeURIComponent(c.id)}">Se mer</a>
+              </div>
+            </article>`;
+        }).join('');
+        count.textContent = `${list.length} biler`;
+      };
+      [q,fuel,trans,sort].forEach(el=>el.addEventListener('input',render));
+      render();
+    });
+  </script>
+</body>
+</html>

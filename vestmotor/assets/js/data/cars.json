@@ -1,0 +1,12 @@
+[
+  {"id":"tesla-model-3-2021","make":"Tesla","model":"Model 3 Long Range","year":2021,"priceNok":349000,"mileageKm":42000,"transmission":"Automat","fuel":"Elektrisk","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"volvo-xc60-2019","make":"Volvo","model":"XC60 D4 AWD","year":2019,"priceNok":389000,"mileageKm":68000,"transmission":"Automat","fuel":"Diesel","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"vw-golf-2018","make":"Volkswagen","model":"Golf 1.0 TSI","year":2018,"priceNok":179000,"mileageKm":72000,"transmission":"Manuell","fuel":"Bensin","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"audi-e-tron-2020","make":"Audi","model":"e-tron 55 quattro","year":2020,"priceNok":469000,"mileageKm":56000,"transmission":"Automat","fuel":"Elektrisk","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"toyota-rav4-2017","make":"Toyota","model":"RAV4 Hybrid","year":2017,"priceNok":259000,"mileageKm":98000,"transmission":"Automat","fuel":"Hybrid","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"bmw-3-2016","make":"BMW","model":"320d xDrive","year":2016,"priceNok":199000,"mileageKm":122000,"transmission":"Automat","fuel":"Diesel","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"skoda-octavia-2018","make":"Skoda","model":"Octavia","year":2018,"priceNok":169000,"mileageKm":88000,"transmission":"Manuell","fuel":"Bensin","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"ford-kuga-2019","make":"Ford","model":"Kuga Plug-in","year":2019,"priceNok":289000,"mileageKm":74000,"transmission":"Automat","fuel":"Hybrid","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"mercedes-c-2017","make":"Mercedes-Benz","model":"C220d","year":2017,"priceNok":239000,"mileageKm":99000,"transmission":"Automat","fuel":"Diesel","image":"/vestmotor/assets/images/hero.jpg"},
+  {"id":"nissan-leaf-2020","make":"Nissan","model":"Leaf 62kWh","year":2020,"priceNok":219000,"mileageKm":51000,"transmission":"Automat","fuel":"Elektrisk","image":"/vestmotor/assets/images/hero.jpg"}
+]

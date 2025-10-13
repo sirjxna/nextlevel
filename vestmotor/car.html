@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Bil – Vest Motor AS</title>
+  <link rel="stylesheet" href="/vestmotor/assets/css/main.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="/vestmotor/"><img src="/vestmotor/assets/images/logo.webp" alt="Vest Motor AS"/></a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny" aria-expanded="false">☰</button>
+    <nav class="nav" data-mobile="closed">
+      <a href="/vestmotor/index.html">Hjem</a>
+      <a href="/vestmotor/cars.html">Bruktbiler</a>
+      <a href="/vestmotor/services.html">Tjenester</a>
+      <a href="/vestmotor/contact.html">Kontakt</a>
+    </nav>
+  </header>
+  <main>
+    <section style="padding:16px 20px" id="car"></section>
+  </main>
+  <footer class="site-footer">
+    <p class="legal">© <span id="year"></span> Vest Motor AS</p>
+  </footer>
+  <script src="/vestmotor/assets/js/main.js" defer></script>
+  <script defer>
+    (async function(){
+      const url = new URL(location.href);
+      const id = url.searchParams.get('id');
+      const cars = await fetch('/vestmotor/assets/js/data/cars.json').then(r=>r.json());
+      const car = cars.find(c=>c.id===id) || cars[0];
+      const el = document.getElementById('car');
+      if(!car){ el.innerHTML = '<p>Fant ikke bil.</p>'; return; }
+      el.innerHTML = `
+        <article class="card">
+          <img style="height:320px" src="${car.image}" alt="${car.make} ${car.model}"/>
+          <div class="content">
+            <h1>${car.make} ${car.model}</h1>
+            <div class="badge">${car.year}</div>
+            <div class="badge">${car.mileageKm.toLocaleString('nb-NO')} km</div>
+            <div class="badge">${car.transmission}</div>
+            <p class="price">${new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(car.priceNok)}</p>
+            <a class="primary" href="/vestmotor/contact.html?subject=${encodeURIComponent('Interesse for ' + car.make + ' ' + car.model)}">Kontakt oss om bilen</a>
+          </div>
+        </article>`;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Kontakt oss – Vest Motor AS</title>
+  <link rel="stylesheet" href="/vestmotor/assets/css/main.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="/vestmotor/"><img src="/vestmotor/assets/images/logo.webp" alt="Vest Motor AS"/></a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny" aria-expanded="false">☰</button>
+    <nav class="nav" data-mobile="closed">
+      <a href="/vestmotor/index.html">Hjem</a>
+      <a href="/vestmotor/cars.html">Bruktbiler</a>
+      <a href="/vestmotor/services.html">Tjenester</a>
+      <a href="/vestmotor/about.html">Om Oss</a>
+    </nav>
+  </header>
+  <main>
+    <section class="form">
+      <h1>Kontakt oss</h1>
+      <form id="contact-form">
+        <input name="name" placeholder="Navn" required/>
+        <input name="email" type="email" placeholder="E-post" required/>
+        <input name="phone" placeholder="Telefon"/>
+        <input name="subject" id="subject" placeholder="Emne"/>
+        <textarea name="message" rows="5" placeholder="Melding" required></textarea>
+        <button type="submit">Send melding</button>
+        <p class="meta" id="status"></p>
+      </form>
+    </section>
+    <section class="grid features">
+      <article>
+        <h3>Adresse</h3>
+        <p>Galteråsen 15A, 5916 Isdalstø</p>
+        <p>Telefon: <a href="tel:+4745324542">(+47) 45 32 45 42</a></p>
+        <p>E-post: <a href="mailto:post@vestmotor.no">post@vestmotor.no</a></p>
+      </article>
+      <article>
+        <h3>Kart</h3>
+        <iframe title="Kart" src="https://www.google.com/maps?q=Galteråsen%2015A%2C%205916%20Isdalstø&output=embed" style="border:0;width:100%;height:320px;border-radius:12px"></iframe>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p class="legal">© <span id="year"></span> Vest Motor AS</p>
+  </footer>
+  <script src="/vestmotor/assets/js/main.js" defer></script>
+  <script defer>
+    // Prefill subject from query
+    const params = new URL(location.href).searchParams;
+    const subject = params.get('subject');
+    if(subject) document.getElementById('subject').value = subject;
+    // Handle form submit (static demo)
+    document.getElementById('contact-form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('status');
+      status.textContent = 'Takk! Vi tar kontakt snart.';
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
