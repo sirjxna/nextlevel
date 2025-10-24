@@ -1,0 +1,16 @@
+[
+{
+  "modid": "webguimod",
+  "name": "Minecraft WebGUI Client",
+  "description": "A Minecraft client with WebGUI for FPS overlay, ToggleSprint and more features",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["WebGUI Team"],
+  "credits": "Created for enhanced Minecraft experience",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
