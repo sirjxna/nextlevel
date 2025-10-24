@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Client - WebGUI</title>
+    <link rel="stylesheet" href="minecraft-client.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- FPS Overlay -->
+    <div id="fps-overlay" class="fps-overlay">
+        <div class="fps-container">
+            <div class="fps-counter">
+                <span class="fps-label">FPS:</span>
+                <span id="fps-value">0</span>
+            </div>
+            <div class="ping-counter">
+                <span class="ping-label">Ping:</span>
+                <span id="ping-value">0ms</span>
+            </div>
+            <div class="memory-counter">
+                <span class="memory-label">RAM:</span>
+                <span id="memory-value">0MB</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main WebGUI -->
+    <div id="webgui" class="webgui">
+        <div class="gui-header">
+            <h1><i class="fas fa-cube"></i> Minecraft Client</h1>
+            <div class="connection-status">
+                <span id="connection-indicator" class="status-disconnected"></span>
+                <span id="connection-text">Disconnected</span>
+            </div>
+        </div>
+
+        <div class="gui-content">
+            <!-- Movement Tab -->
+            <div class="tab-content active" id="movement-tab">
+                <h2><i class="fas fa-running"></i> Movement</h2>
+                
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Toggle Sprint</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-sprint">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Hold down sprint key once to enable continuous sprinting</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Walk</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-walk">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically walk forward</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Jump</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-jump">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically jump when walking into blocks</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Fly</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="fly-mode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Enable creative mode flying</p>
+                </div>
+            </div>
+
+            <!-- Visual Tab -->
+            <div class="tab-content" id="visual-tab">
+                <h2><i class="fas fa-eye"></i> Visual</h2>
+                
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Fullbright</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="fullbright">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Maximum brightness in all areas</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>X-Ray</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="xray">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>See through blocks to find ores</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>ESP</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="esp">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Highlight players and entities through walls</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>No Render</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="no-render">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Disable rendering of certain blocks</p>
+                </div>
+            </div>
+
+            <!-- Combat Tab -->
+            <div class="tab-content" id="combat-tab">
+                <h2><i class="fas fa-sword"></i> Combat</h2>
+                
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Clicker</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-clicker">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically click at specified intervals</p>
+                    <div class="setting-control">
+                        <label>CPS: <span id="cps-value">10</span></label>
+                        <input type="range" id="cps-slider" min="1" max="20" value="10">
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Block</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-block">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically block with shield when attacked</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Eat</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-eat">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically eat food when hungry</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Potion</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-potion">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically drink potions when low on health</p>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings-tab">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>WebSocket Port</h3>
+                    </div>
+                    <div class="setting-control">
+                        <input type="number" id="websocket-port" value="8080" min="1000" max="65535">
+                        <button id="connect-btn" class="connect-button">Connect</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Hotkeys</h3>
+                    </div>
+                    <div class="hotkey-settings">
+                        <div class="hotkey-item">
+                            <span>Toggle GUI:</span>
+                            <kbd>F1</kbd>
+                        </div>
+                        <div class="hotkey-item">
+                            <span>Toggle Sprint:</span>
+                            <kbd>F2</kbd>
+                        </div>
+                        <div class="hotkey-item">
+                            <span>Toggle Fly:</span>
+                            <kbd>F3</kbd>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Performance</h3>
+                    </div>
+                    <div class="setting-control">
+                        <label>Update Rate: <span id="update-rate-value">60</span> FPS</label>
+                        <input type="range" id="update-rate-slider" min="10" max="120" value="60">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="movement">
+                <i class="fas fa-running"></i>
+                <span>Movement</span>
+            </button>
+            <button class="tab-btn" data-tab="visual">
+                <i class="fas fa-eye"></i>
+                <span>Visual</span>
+            </button>
+            <button class="tab-btn" data-tab="combat">
+                <i class="fas fa-sword"></i>
+                <span>Combat</span>
+            </button>
+            <button class="tab-btn" data-tab="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toggle GUI Button -->
+    <button id="toggle-gui" class="toggle-gui-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <script src="minecraft-client.js"></script>
+</body>
+</html>
