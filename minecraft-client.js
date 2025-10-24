@@ -7,25 +7,33 @@ class MinecraftClient {
             toggleSprint: false,
             autoWalk: false,
             autoJump: false,
-            flyMode: false,
+            safeWalk: false,
             fullbright: false,
-            xray: false,
-            esp: false,
-            noRender: false,
-            autoClicker: false,
-            autoBlock: false,
+            clearWater: false,
+            betterFoliage: false,
+            customCrosshair: false,
+            fovChanger: false,
             autoEat: false,
-            autoPotion: false
+            autoPotion: false,
+            inventoryManager: false,
+            autoTool: false,
+            autoArmor: false,
+            autoRepair: false
         };
         this.settings = {
-            cps: 10,
             updateRate: 60,
-            websocketPort: 8080
+            websocketPort: 8080,
+            fov: 90,
+            theme: 'dark',
+            fpsPosition: 'top-left'
         };
         this.fps = 0;
         this.ping = 0;
         this.memory = 0;
+        this.cps = 0;
         this.fpsHistory = [];
+        this.clickCount = 0;
+        this.lastClickTime = 0;
         
         this.init();
     }
@@ -63,32 +71,44 @@ class MinecraftClient {
             this.toggleFeature('autoJump', e.target.checked);
         });
 
-        document.getElementById('fly-mode').addEventListener('change', (e) => {
-            this.toggleFeature('flyMode', e.target.checked);
+        document.getElementById('safe-walk').addEventListener('change', (e) => {
+            this.toggleFeature('safeWalk', e.target.checked);
         });
 
         document.getElementById('fullbright').addEventListener('change', (e) => {
             this.toggleFeature('fullbright', e.target.checked);
         });
 
-        document.getElementById('xray').addEventListener('change', (e) => {
-            this.toggleFeature('xray', e.target.checked);
+        document.getElementById('clear-water').addEventListener('change', (e) => {
+            this.toggleFeature('clearWater', e.target.checked);
         });
 
-        document.getElementById('esp').addEventListener('change', (e) => {
-            this.toggleFeature('esp', e.target.checked);
+        document.getElementById('better-foliage').addEventListener('change', (e) => {
+            this.toggleFeature('betterFoliage', e.target.checked);
         });
 
-        document.getElementById('no-render').addEventListener('change', (e) => {
-            this.toggleFeature('noRender', e.target.checked);
+        document.getElementById('custom-crosshair').addEventListener('change', (e) => {
+            this.toggleFeature('customCrosshair', e.target.checked);
         });
 
-        document.getElementById('auto-clicker').addEventListener('change', (e) => {
-            this.toggleFeature('autoClicker', e.target.checked);
+        document.getElementById('fov-changer').addEventListener('change', (e) => {
+            this.toggleFeature('fovChanger', e.target.checked);
         });
 
-        document.getElementById('auto-block').addEventListener('change', (e) => {
-            this.toggleFeature('autoBlock', e.target.checked);
+        document.getElementById('inventory-manager').addEventListener('change', (e) => {
+            this.toggleFeature('inventoryManager', e.target.checked);
+        });
+
+        document.getElementById('auto-tool').addEventListener('change', (e) => {
+            this.toggleFeature('autoTool', e.target.checked);
+        });
+
+        document.getElementById('auto-armor').addEventListener('change', (e) => {
+            this.toggleFeature('autoArmor', e.target.checked);
+        });
+
+        document.getElementById('auto-repair').addEventListener('change', (e) => {
+            this.toggleFeature('autoRepair', e.target.checked);
         });
 
         document.getElementById('auto-eat').addEventListener('change', (e) => {
@@ -100,10 +120,10 @@ class MinecraftClient {
         });
 
         // Settings
-        document.getElementById('cps-slider').addEventListener('input', (e) => {
-            this.settings.cps = parseInt(e.target.value);
-            document.getElementById('cps-value').textContent = this.settings.cps;
-            this.sendToMinecraft('settings', { cps: this.settings.cps });
+        document.getElementById('fov-slider').addEventListener('input', (e) => {
+            this.settings.fov = parseInt(e.target.value);
+            document.getElementById('fov-value').textContent = this.settings.fov;
+            this.sendToMinecraft('settings', { fov: this.settings.fov });
         });
 
         document.getElementById('update-rate-slider').addEventListener('input', (e) => {
@@ -113,6 +133,16 @@ class MinecraftClient {
 
         document.getElementById('websocket-port').addEventListener('change', (e) => {
             this.settings.websocketPort = parseInt(e.target.value);
+        });
+
+        document.getElementById('theme-selector').addEventListener('change', (e) => {
+            this.settings.theme = e.target.value;
+            this.applyTheme(e.target.value);
+        });
+
+        document.getElementById('fps-position').addEventListener('change', (e) => {
+            this.settings.fpsPosition = e.target.value;
+            this.updateFPSPosition(e.target.value);
         });
 
         document.getElementById('connect-btn').addEventListener('click', () => {
@@ -138,7 +168,11 @@ class MinecraftClient {
                     break;
                 case 'F3':
                     e.preventDefault();
-                    this.toggleFeature('flyMode', !this.features.flyMode);
+                    this.toggleFeature('autoWalk', !this.features.autoWalk);
+                    break;
+                case 'F4':
+                    e.preventDefault();
+                    this.toggleFeature('fullbright', !this.features.fullbright);
                     break;
             }
         });
@@ -302,6 +336,7 @@ class MinecraftClient {
         document.getElementById('fps-value').textContent = this.fps;
         document.getElementById('ping-value').textContent = `${this.ping}ms`;
         document.getElementById('memory-value').textContent = `${this.memory}MB`;
+        document.getElementById('cps-value').textContent = this.cps;
         
         // Color code FPS
         const fpsElement = document.getElementById('fps-value');
@@ -312,6 +347,18 @@ class MinecraftClient {
         } else {
             fpsElement.style.color = '#ff4444';
         }
+    }
+
+    applyTheme(theme) {
+        const body = document.body;
+        body.className = `theme-${theme}`;
+        this.sendToMinecraft('settings', { theme: theme });
+    }
+
+    updateFPSPosition(position) {
+        const fpsOverlay = document.getElementById('fps-overlay');
+        fpsOverlay.className = `fps-overlay fps-${position}`;
+        this.sendToMinecraft('settings', { fpsPosition: position });
     }
 
     showNotification(message) {

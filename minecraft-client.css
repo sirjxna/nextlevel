@@ -16,8 +16,6 @@ body {
 /* FPS Overlay */
 .fps-overlay {
     position: fixed;
-    top: 20px;
-    left: 20px;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -28,13 +26,33 @@ body {
     transition: all 0.3s ease;
 }
 
+.fps-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.fps-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.fps-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.fps-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
 .fps-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.fps-counter, .ping-counter, .memory-counter {
+.fps-counter, .ping-counter, .memory-counter, .cps-counter {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -59,6 +77,11 @@ body {
 
 #memory-value {
     color: #ffaa00;
+    font-weight: 600;
+}
+
+#cps-value {
+    color: #ff6b6b;
     font-weight: 600;
 }
 
@@ -429,6 +452,35 @@ kbd {
 .feature-card:nth-child(3) { animation-delay: 0.3s; }
 .feature-card:nth-child(4) { animation-delay: 0.4s; }
 
+/* Theme Support */
+.theme-dark {
+    --primary-bg: #1e1e2e;
+    --secondary-bg: #2d2d44;
+    --accent-color: #667eea;
+    --text-color: #ffffff;
+}
+
+.theme-light {
+    --primary-bg: #f5f5f5;
+    --secondary-bg: #ffffff;
+    --accent-color: #4a90e2;
+    --text-color: #333333;
+}
+
+.theme-blue {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+}
+
+.theme-purple {
+    --primary-bg: #2d1b69;
+    --secondary-bg: #11052c;
+    --accent-color: #ff6b6b;
+    --text-color: #f8b500;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .webgui {
@@ -449,9 +501,23 @@ kbd {
     }
     
     .fps-overlay {
-        top: 10px;
-        left: 10px;
         padding: 10px 15px;
+    }
+    
+    .fps-top-left, .fps-top-right {
+        top: 10px;
+    }
+    
+    .fps-bottom-left, .fps-bottom-right {
+        bottom: 10px;
+    }
+    
+    .fps-top-left, .fps-bottom-left {
+        left: 10px;
+    }
+    
+    .fps-top-right, .fps-bottom-right {
+        right: 10px;
     }
     
     .toggle-gui-btn {

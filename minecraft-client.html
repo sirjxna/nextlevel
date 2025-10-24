@@ -24,6 +24,10 @@
                 <span class="memory-label">RAM:</span>
                 <span id="memory-value">0MB</span>
             </div>
+            <div class="cps-counter">
+                <span class="cps-label">CPS:</span>
+                <span id="cps-value">0</span>
+            </div>
         </div>
     </div>
 
@@ -61,7 +65,7 @@
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <p>Automatically walk forward</p>
+                    <p>Automatically walk forward when enabled</p>
                 </div>
 
                 <div class="feature-card">
@@ -77,13 +81,13 @@
 
                 <div class="feature-card">
                     <div class="feature-header">
-                        <h3>Fly</h3>
+                        <h3>Safe Walk</h3>
                         <label class="toggle-switch">
-                            <input type="checkbox" id="fly-mode">
+                            <input type="checkbox" id="safe-walk">
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <p>Enable creative mode flying</p>
+                    <p>Prevents falling off edges when sneaking</p>
                 </div>
             </div>
 
@@ -104,68 +108,57 @@
 
                 <div class="feature-card">
                     <div class="feature-header">
-                        <h3>X-Ray</h3>
+                        <h3>Clear Water</h3>
                         <label class="toggle-switch">
-                            <input type="checkbox" id="xray">
+                            <input type="checkbox" id="clear-water">
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <p>See through blocks to find ores</p>
+                    <p>Makes water transparent for better visibility</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
-                        <h3>ESP</h3>
+                        <h3>Better Foliage</h3>
                         <label class="toggle-switch">
-                            <input type="checkbox" id="esp">
+                            <input type="checkbox" id="better-foliage">
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <p>Highlight players and entities through walls</p>
+                    <p>Improves grass and leaves rendering</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-header">
-                        <h3>No Render</h3>
+                        <h3>Custom Crosshair</h3>
                         <label class="toggle-switch">
-                            <input type="checkbox" id="no-render">
+                            <input type="checkbox" id="custom-crosshair">
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <p>Disable rendering of certain blocks</p>
+                    <p>Customizable crosshair with different styles</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>FOV Changer</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="fov-changer">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Adjustable field of view</p>
+                    <div class="setting-control">
+                        <label>FOV: <span id="fov-value">90</span>°</label>
+                        <input type="range" id="fov-slider" min="30" max="120" value="90">
+                    </div>
                 </div>
             </div>
 
-            <!-- Combat Tab -->
-            <div class="tab-content" id="combat-tab">
-                <h2><i class="fas fa-sword"></i> Combat</h2>
+            <!-- Utility Tab -->
+            <div class="tab-content" id="utility-tab">
+                <h2><i class="fas fa-tools"></i> Utility</h2>
                 
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <h3>Auto Clicker</h3>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="auto-clicker">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <p>Automatically click at specified intervals</p>
-                    <div class="setting-control">
-                        <label>CPS: <span id="cps-value">10</span></label>
-                        <input type="range" id="cps-slider" min="1" max="20" value="10">
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <h3>Auto Block</h3>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="auto-block">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <p>Automatically block with shield when attacked</p>
-                </div>
-
                 <div class="feature-card">
                     <div class="feature-header">
                         <h3>Auto Eat</h3>
@@ -186,6 +179,50 @@
                         </label>
                     </div>
                     <p>Automatically drink potions when low on health</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Inventory Manager</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="inventory-manager">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Smart inventory organization and sorting</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Tool</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-tool">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically switch to the best tool for the block</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Armor</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-armor">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically equip the best armor available</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>Auto Repair</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-repair">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Automatically repair items when durability is low</p>
                 </div>
             </div>
 
@@ -217,8 +254,12 @@
                             <kbd>F2</kbd>
                         </div>
                         <div class="hotkey-item">
-                            <span>Toggle Fly:</span>
+                            <span>Toggle Auto Walk:</span>
                             <kbd>F3</kbd>
+                        </div>
+                        <div class="hotkey-item">
+                            <span>Toggle Fullbright:</span>
+                            <kbd>F4</kbd>
                         </div>
                     </div>
                 </div>
@@ -230,6 +271,30 @@
                     <div class="setting-control">
                         <label>Update Rate: <span id="update-rate-value">60</span> FPS</label>
                         <input type="range" id="update-rate-slider" min="10" max="120" value="60">
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>UI Settings</h3>
+                    </div>
+                    <div class="setting-control">
+                        <label>Theme:</label>
+                        <select id="theme-selector">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="blue">Blue</option>
+                            <option value="purple">Purple</option>
+                        </select>
+                    </div>
+                    <div class="setting-control">
+                        <label>FPS Overlay Position:</label>
+                        <select id="fps-position">
+                            <option value="top-left">Top Left</option>
+                            <option value="top-right">Top Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                            <option value="bottom-right">Bottom Right</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -245,9 +310,9 @@
                 <i class="fas fa-eye"></i>
                 <span>Visual</span>
             </button>
-            <button class="tab-btn" data-tab="combat">
-                <i class="fas fa-sword"></i>
-                <span>Combat</span>
+            <button class="tab-btn" data-tab="utility">
+                <i class="fas fa-tools"></i>
+                <span>Utility</span>
             </button>
             <button class="tab-btn" data-tab="settings">
                 <i class="fas fa-cog"></i>
