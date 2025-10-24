@@ -250,7 +250,7 @@ class MinecraftWebSocketServer {
 }
 
 // Start the server
-const server = new MinecraftWebSocketServer(8081);
+const server = new MinecraftWebSocketServer(3000);
 
 // Simulate Minecraft integration for demo purposes
 // server.simulateMinecraftIntegration();

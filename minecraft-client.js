@@ -22,7 +22,7 @@ class MinecraftClient {
         };
         this.settings = {
             updateRate: 60,
-            websocketPort: 8081,
+            websocketPort: 3000,
             fov: 90,
             theme: 'dark',
             fpsPosition: 'top-left'

@@ -1,6 +1,6 @@
 # Minecraft Client med WebGUI
 
-En avansert Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og mange flere funksjoner!
+En Lunar/Badlion-lignende Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og mange flere legitime QoL (Quality of Life) funksjoner!
 
 ## 🚀 Funksjoner
 
@@ -8,24 +8,28 @@ En avansert Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og
 - **Toggle Sprint** - Hold sprint-tasten en gang for kontinuerlig sprinting
 - **Auto Walk** - Automatisk gåing fremover
 - **Auto Jump** - Automatisk hopp når du går inn i blokker
-- **Fly Mode** - Kreativ fly-modus
+- **Safe Walk** - Forhindrer fall fra kanter når du sniker
 
 ### Visual
 - **Fullbright** - Maksimal lysstyrke i alle områder
-- **X-Ray** - Se gjennom blokker for å finne malm
-- **ESP** - Fremhev spillere og enheter gjennom vegger
-- **No Render** - Deaktiver rendering av visse blokker
+- **Clear Water** - Gjør vann transparent for bedre synlighet
+- **Better Foliage** - Forbedrer rendering av gress og løv
+- **Custom Crosshair** - Tilpasset korshår med forskjellige stiler
+- **FOV Changer** - Justerbar synsfelt
 
-### Combat
-- **Auto Clicker** - Automatisk klikking med justerbar CPS
-- **Auto Block** - Automatisk blokkering med skjold
+### Utility
 - **Auto Eat** - Automatisk spising når du er sulten
 - **Auto Potion** - Automatisk drikking av eliksirer
+- **Inventory Manager** - Smart inventarorganisering og sortering
+- **Auto Tool** - Automatisk bytte til beste verktøy for blokken
+- **Auto Armor** - Automatisk utstyr av beste rustning tilgjengelig
+- **Auto Repair** - Automatisk reparasjon når holdbarhet er lav
 
 ### Performance
-- **FPS Overlay** - Sanntids FPS, Ping og RAM bruk
+- **FPS Overlay** - Sanntids FPS, Ping, RAM og CPS
 - **Performance Monitoring** - Overvåk ytelse
 - **Customizable Settings** - Justerbare innstillinger
+- **Multiple Themes** - Forskjellige fargetemaer
 
 ## 📋 Installasjon
 
@@ -53,10 +57,11 @@ En avansert Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og
    ```
 
 4. **Åpne WebGUI**
-   - Gå til `http://localhost:8080/minecraft-client.html`
+   - Gå til `http://localhost:3000/minecraft-client.html`
    - Trykk F1 for å åpne/lukke GUI
    - Trykk F2 for Toggle Sprint
-   - Trykk F3 for Fly Mode
+   - Trykk F3 for Auto Walk
+   - Trykk F4 for Fullbright
 
 ### Minecraft Mod (For ekte Minecraft integrasjon)
 
@@ -77,14 +82,15 @@ En avansert Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og
 
 4. **Koble til fra Minecraft**
    - Mod-en vil automatisk koble til WebSocket serveren
-   - Åpne `http://localhost:8080/minecraft-client.html` i nettleseren
+   - Åpne `http://localhost:3000/minecraft-client.html` i nettleseren
 
 ## 🎮 Bruk
 
 ### Hotkeys
 - **F1** - Åpne/lukke WebGUI
 - **F2** - Toggle Sprint
-- **F3** - Toggle Fly Mode
+- **F3** - Toggle Auto Walk
+- **F4** - Toggle Fullbright
 
 ### WebGUI Kontroller
 - **Toggle Switches** - Aktiver/deaktiver funksjoner
@@ -99,7 +105,7 @@ En avansert Minecraft Client med WebGUI som gir deg FPS overlay, ToggleSprint og
 ## 🔧 Konfigurasjon
 
 ### WebSocket Port
-Standard port er 8080. Du kan endre dette i innstillingene.
+Standard port er 3000. Du kan endre dette i innstillingene.
 
 ### Performance Settings
 - **Update Rate** - Hvor ofte data oppdateres (10-120 FPS)
@@ -126,7 +132,7 @@ Alle hotkeys kan endres i Minecraft mod-en.
 
 **WebGUI åpnes ikke**
 - Sjekk at WebSocket serveren kjører
-- Sjekk at port 8080 er tilgjengelig
+- Sjekk at port 3000 er tilgjengelig
 - Prøv å oppdatere siden
 
 **Funksjoner fungerer ikke**
